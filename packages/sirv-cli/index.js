@@ -35,8 +35,9 @@ module.exports = function (dir, opts) {
 	opts.maxAge = opts.m;
 
 	if (opts.cors) {
+		opts.cors = typeof opts.cors === 'string' ? opts.cors : '*'
 		opts.setHeaders = res => {
-			res.setHeader('Access-Control-Allow-Origin', '*');
+			res.setHeader('Access-Control-Allow-Origin', opts.cors);
 			res.setHeader('Access-Control-Allow-Headers', 'Origin, Content-Type, Accept, Range');
 		}
 	}
